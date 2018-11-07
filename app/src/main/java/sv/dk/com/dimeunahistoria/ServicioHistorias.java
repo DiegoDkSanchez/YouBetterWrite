@@ -12,9 +12,9 @@ import sv.dk.com.dimeunahistoria.Modelos.ResponseData;
 
 public interface ServicioHistorias {
 
-    String base_url = "http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/story/public/api/";
+    String base_url = "http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/api/";
 
-    @GET("stories/")
+    @GET("stories")
     Call<ResponseData> getHistorias();
 
     @GET("autores/{id}")

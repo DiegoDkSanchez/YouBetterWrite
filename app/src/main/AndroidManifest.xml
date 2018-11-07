@@ -35,7 +35,8 @@
         <activity
             android:name=".Perfil"
             android:screenOrientation="portrait" />
-        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".LoginPage" />
+        <activity android:name=".AgregarHistoria"></activity>
     </application>
 
 </manifest>
