@@ -11,6 +11,14 @@ public class Perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+
+
+    }
+
+    public void agregarhistoria(View view) {
+        Intent intent = new Intent(Perfil.this, AgregarHistoria.class);
+        startActivity(intent);
     }
 
     public void navegacionInicio(View view) {
@@ -34,4 +42,6 @@ public class Perfil extends AppCompatActivity {
     public void navegacionPerfil(View view){
 
     }
+
+
 }

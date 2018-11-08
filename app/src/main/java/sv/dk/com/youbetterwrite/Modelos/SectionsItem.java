@@ -2,12 +2,13 @@ package sv.dk.com.youbetterwrite.Modelos;
 
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class SectionsItem implements Parcelable {
+
+public class SectionsItem implements Serializable {
 
 	@SerializedName("id_story")
 	private int idStory;
@@ -43,33 +44,6 @@ public class SectionsItem implements Parcelable {
 		url = in.readString();
 	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(idStory);
-		dest.writeString(updatedAt);
-		dest.writeString(name);
-		dest.writeString(description);
-		dest.writeString(createdAt);
-		dest.writeInt(id);
-		dest.writeString(url);
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	public static final Creator<SectionsItem> CREATOR = new Creator<SectionsItem>() {
-		@Override
-		public SectionsItem createFromParcel(Parcel in) {
-			return new SectionsItem(in);
-		}
-
-		@Override
-		public SectionsItem[] newArray(int size) {
-			return new SectionsItem[size];
-		}
-	};
 
 	public void setIdStory(int idStory){
 		this.idStory = idStory;

@@ -6,4 +6,6 @@
 
     <string name="facebook_app_id">355191508574199</string> <string name="fb_login_protocol_scheme">fb355191508574199</string>
 
+    <string name="hintTitulo">Titulo</string>
+    <string name="hintDescripcion">Full Name</string>
 </resources>

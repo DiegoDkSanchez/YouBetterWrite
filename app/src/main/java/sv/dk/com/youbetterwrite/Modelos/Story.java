@@ -3,11 +3,12 @@ package sv.dk.com.youbetterwrite.Modelos;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Story implements Parcelable{
+public class Story implements Serializable{
 
 	@SerializedName("updated_at")
 	private String updatedAt;
@@ -36,6 +37,9 @@ public class Story implements Parcelable{
 	@SerializedName("sections")
 	private List<SectionsItem> sections;
 
+	@SerializedName("url")
+	private String url;
+
 	protected Story(Parcel in) {
 		updatedAt = in.readString();
 		idCategory = in.readInt();
@@ -43,34 +47,9 @@ public class Story implements Parcelable{
 		createdAt = in.readString();
 		id = in.readInt();
 		state = in.readInt();
+		url = in.readString();
 	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(updatedAt);
-		dest.writeInt(idCategory);
-		dest.writeString(name);
-		dest.writeString(createdAt);
-		dest.writeInt(id);
-		dest.writeInt(state);
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	public static final Creator<Story> CREATOR = new Creator<Story>() {
-		@Override
-		public Story createFromParcel(Parcel in) {
-			return new Story(in);
-		}
-
-		@Override
-		public Story[] newArray(int size) {
-			return new Story[size];
-		}
-	};
 
 	public void setUpdatedAt(String updatedAt){
 		this.updatedAt = updatedAt;
@@ -144,14 +123,23 @@ public class Story implements Parcelable{
 		return sections;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	@Override
  	public String toString(){
 		return 
 			"Story{" +
 			"updated_at = '" + updatedAt + '\'' + 
 			",id_category = '" + idCategory + '\'' + 
-			",name = '" + name + '\'' + 
-			",created_at = '" + createdAt + '\'' + 
+			",name = '" + name + '\'' +
+			",url = '" + url + '\'' +
+			",created_at = '" + createdAt + '\'' +
 			",id = '" + id + '\'' + 
 			",state = '" + state + '\'' + 
 			",category = '" + category + '\'' + 

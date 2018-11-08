@@ -11,10 +11,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import sv.dk.com.youbetterwrite.Modelos.Historia;
+import sv.dk.com.youbetterwrite.Modelos.Story;
 
 public class HistoriaDetalle extends AppCompatActivity {
 
-    Historia historia;
+    Story historia;
     ImageView portada;
     TextView titulo, categoria, autor;
     LinearLayout fondoDetalle;
@@ -31,19 +32,19 @@ public class HistoriaDetalle extends AppCompatActivity {
         autor = (TextView) findViewById(R.id.txtAutorDetalle);
         fondoDetalle = (LinearLayout) findViewById(R.id.fondoDetalle);
 
-        historia = (Historia)getIntent().getSerializableExtra("historia");
+        historia = (Story) getIntent().getSerializableExtra("historia");
 
-        Glide.with(this).load(historia.getPortada()).into(portada);
-        titulo.setText(historia.getTitulo());
-        categoria.setText(historia.getCategoria());
-        autor.setText(historia.getAutor());
+        Glide.with(this).load(historia.getUrl()).into(portada);
+        titulo.setText(historia.getName());
+        categoria.setText(historia.getCategory().getName());
+        //autor.setText(historia.get());
 
     }
 
     public void leerAhora(View view) {
         Intent intent = new Intent(this, SeccionView.class);
         intent.putExtra("historia", historia);
-        intent.putExtra("lista", historia.getSecciones());
+        //intent.putExtra("lista", historia.getSections());
         intent.putExtra("pagina", 0);
         startActivity(intent);
         finish();

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
     HistoriasAdapter adaptador;
     List<Story> listaHistorias;
     SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout linearLayout;
 
     Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         //FindViewById
         recyclerView = (RecyclerView) findViewById(R.id.reciclerView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
+        linearLayout = findViewById(R.id.MainLayoutMainActivity);
         listaHistorias = new ArrayList<>();
 
         swipeRefreshLayout.setRefreshing(true);
@@ -85,14 +88,29 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
             }
         });
 
+        linearLayout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+            public void onSwipeTop() {
+                //  Toast.makeText(SeccionView.this, "top", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeRight() {
+                Intent intent = new Intent(MainActivity.this, Busqueda.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+                finish();
+            }
+            public void onSwipeLeft() {
+
+            }
+            public void onSwipeBottom() {
+                // Toast.makeText(SeccionView.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     @Override
     public void onItemClick(View view, int position) {
-
-
         Story historia = listaHistorias.get(position);
-
         Intent intent = new Intent(this, HistoriaDetalle.class);
         intent.putExtra("historia", historia);
         startActivity(intent);
@@ -131,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         Intent intent = new Intent(MainActivity.this, Busqueda.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         finish();
     }
 
@@ -138,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         Intent intent = new Intent(MainActivity.this, Favoritos.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         finish();
     }
 
@@ -145,6 +165,9 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         Intent intent = new Intent(MainActivity.this, Perfil.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         finish();
     }
+
+
 }
