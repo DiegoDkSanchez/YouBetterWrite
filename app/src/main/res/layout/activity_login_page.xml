@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/negroStandar"
     android:orientation="vertical"
-    tools:context="sv.dk.com.dimeunahistoria.LoginPage">
+    tools:context="sv.dk.com.youbetterwrite.LoginPage">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -34,7 +34,26 @@
             android:textColor="#b8ffffff"
             android:textStyle="bold"/>
 
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@id/loginLogo"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_button"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
