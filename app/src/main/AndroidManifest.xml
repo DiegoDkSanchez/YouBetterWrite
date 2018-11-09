@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="sv.dk.com.youbetterwrite.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,36 +21,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="sv.dk.com.youbetterwrite.HistoriaDetalle"
+            android:name=".HistoriaDetalle"
             android:screenOrientation="portrait" />
         <activity
-            android:name="sv.dk.com.youbetterwrite.SeccionView"
+            android:name=".SeccionView"
             android:screenOrientation="portrait" />
         <activity
-            android:name="sv.dk.com.youbetterwrite.Busqueda"
+            android:name=".Busqueda"
             android:screenOrientation="portrait" />
         <activity
-            android:name="sv.dk.com.youbetterwrite.Favoritos"
+            android:name=".Favoritos"
             android:screenOrientation="portrait" />
         <activity
-            android:name="sv.dk.com.youbetterwrite.Perfil"
+            android:name=".Perfil"
             android:screenOrientation="portrait" />
-        <activity android:name="sv.dk.com.youbetterwrite.LoginPage">
-
-        </activity>
+        <activity android:name=".LoginPage"></activity>
 
         <!-- FaceBook -->
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" />
-        <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name="sv.dk.com.youbetterwrite.AgregarHistoria"></activity>
+        <activity android:name=".AgregarHistoria" />
+        <activity android:name=".AgregarSeccion"></activity>
     </application>
 
 </manifest>
