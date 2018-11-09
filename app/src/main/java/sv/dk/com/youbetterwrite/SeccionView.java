@@ -11,9 +11,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import sv.dk.com.youbetterwrite.Modelos.Historia;
 import sv.dk.com.youbetterwrite.Modelos.Seccion;
+import sv.dk.com.youbetterwrite.Modelos.SectionsItem;
+import sv.dk.com.youbetterwrite.Modelos.Story;
 import sv.dk.com.youbetterwrite.Speaker.SpeakRequest;
 
 public class SeccionView extends AppCompatActivity {
@@ -24,9 +27,9 @@ public class SeccionView extends AppCompatActivity {
 
     private int pagina;
     private SpeakRequest speakRequest;
-    private Historia historia;
-    private Seccion seccion;
-    private ArrayList<Seccion> secciones = new ArrayList<>();
+    private Story historia;
+    private SectionsItem seccion;
+    private List<SectionsItem> secciones = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,32 +46,38 @@ public class SeccionView extends AppCompatActivity {
         numPaginas = (TextView) findViewById(R.id.txtNumPagina);
 
         pagina = (int) getIntent().getSerializableExtra("pagina");
-        historia = (Historia) getIntent().getSerializableExtra("historia");
-        secciones = (ArrayList<Seccion>) getIntent().getSerializableExtra("lista");
+        historia = (Story) getIntent().getSerializableExtra("historia");
+        secciones = historia.getSections();
         seccion = secciones.get(pagina);
+
+        if(seccion.getUrl() != null){
+            Glide.with(this).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+seccion.getUrl()).into(imagen);
+        }else{
+            Glide.with(this).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+historia.getUrl()).into(imagen);
+        }
 
         if(speakRequest == null) {
             speakRequest = new SpeakRequest(this);
         }
 
-        if(pagina==historia.getSecciones().size()-1){
+        if(pagina==historia.getSections().size()-1){
             adelante.setVisibility(View.INVISIBLE);
         }
-        if(seccion.getIamgen() != null){
-            Glide.with(this).load(seccion.getIamgen()).into(imagen);
+        if(seccion.getUrl() != null){
+            Glide.with(this).load(seccion.getUrl()).into(imagen);
         }else {
-            Glide.with(this).load(historia.getPortada()).into(imagen);
+            Glide.with(this).load(historia.getUrl()).into(imagen);
         }
 
-        titulo.setText(historia.getTitulo());
-        if(seccion.getSubtitulo()!=null){
-            subtitulo.setText(seccion.getSubtitulo());
+        titulo.setText(historia.getName());
+        if(seccion.getName()!=null){
+            subtitulo.setText(seccion.getName());
         }else {
             subtitulo.setVisibility(View.INVISIBLE);
         }
         int paginaReal = pagina+1;
         numPaginas.setText("Pagina "+paginaReal);
-        contenido.setText(seccion.getContenido());
+        contenido.setText(seccion.getDescription());
 
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +85,6 @@ public class SeccionView extends AppCompatActivity {
                 if(pagina != 0) {
                     Intent intent = new Intent(SeccionView.this, SeccionView.class);
                     intent.putExtra("historia", historia);
-                    intent.putExtra("lista", historia.getSecciones());
                     pagina -= 1;
                     intent.putExtra("pagina", pagina);
                     startActivity(intent);
@@ -97,7 +105,6 @@ public class SeccionView extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SeccionView.this, SeccionView.class);
                 intent.putExtra("historia", historia);
-                intent.putExtra("lista", historia.getSecciones());
                 pagina += 1;
                 intent.putExtra("pagina", pagina);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
@@ -113,7 +120,7 @@ public class SeccionView extends AppCompatActivity {
         if(speakRequest.isSpeaking()){
             speakRequest.stopSpeak();
         }
-        String texto = seccion.getSubtitulo()+". \n"+seccion.getContenido();
+        String texto = seccion.getName()+". \n"+seccion.getDescription();
         speakRequest.speak(texto);
     }
 }

@@ -39,7 +39,7 @@ public class AddSeccionAdapter extends ArrayAdapter<SectionsItem> implements Vie
 
     public AddSeccionAdapter(ArrayList<SectionsItem> data, Context mContext) {
         super(mContext, R.layout.row_seccion, data);
-        this.dataSet = dataSet;
+        this.dataSet = data;
         this.mContext = mContext;
     }
 

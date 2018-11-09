@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -34,7 +35,7 @@ public class HistoriaDetalle extends AppCompatActivity {
 
         historia = (Story) getIntent().getSerializableExtra("historia");
 
-        Glide.with(this).load(historia.getUrl()).into(portada);
+        Glide.with(this).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+historia.getUrl()).into(portada);
         titulo.setText(historia.getName());
         categoria.setText(historia.getCategory().getName());
         //autor.setText(historia.get());
@@ -46,7 +47,12 @@ public class HistoriaDetalle extends AppCompatActivity {
         intent.putExtra("historia", historia);
         //intent.putExtra("lista", historia.getSections());
         intent.putExtra("pagina", 0);
-        startActivity(intent);
-        finish();
+        if(historia.getSections() != null && historia.getSections().size() != 0){
+            startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(getApplicationContext(),"Historia sin secciones", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

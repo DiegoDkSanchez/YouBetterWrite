@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.dk.com.youbetterwrite">
 
+    <meta-data
+    android:name="com.google.firebase.messaging.default_notification_icon"
+    android:resource="@drawable/ic_launcher_background" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -60,6 +64,17 @@
         </activity>
         <activity android:name=".AgregarHistoria" />
         <activity android:name=".AgregarSeccion"></activity>
+
+    <service android:name=".FirebaseIDService">
+        <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+        </intent-filter>
+    </service>
+        <service android:name=".FirebaseMesaginService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

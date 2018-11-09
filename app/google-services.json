@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "729260534505",
+    "firebase_url": "https://youbetterwrite-42d83.firebaseio.com",
+    "project_id": "youbetterwrite-42d83",
+    "storage_bucket": "youbetterwrite-42d83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729260534505:android:fef32734111eec7b",
+        "android_client_info": {
+          "package_name": "sv.dk.com.youbetterwrite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729260534505-jtjpk707a33njbn0sbcr1kfjv0jqroo5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.dk.com.youbetterwrite",
+            "certificate_hash": "da540b70c380256a458a22a3e298369f57c83e5e"
+          }
+        },
+        {
+          "client_id": "729260534505-pkv0qgs0gt4pos7l5rsl0ltmldoug3mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy0i5iopmA0tbgFJ2jJXtPJNhVCOkpz4U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729260534505-pkv0qgs0gt4pos7l5rsl0ltmldoug3mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

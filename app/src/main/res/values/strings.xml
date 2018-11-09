@@ -8,5 +8,6 @@
     <string name="fb_login_protocol_scheme">fb355191508574199</string>
 
     <string name="hintTitulo">Titulo</string>
-    <string name="hintDescripcion">Full Name</string>
+    <string name="hintSubtitulo">SubTitulo</string>
+    <string name="hintContenido">Contenido</string>
 </resources>

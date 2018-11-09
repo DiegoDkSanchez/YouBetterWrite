@@ -34,15 +34,6 @@ public class SectionsItem implements Serializable {
 	@SerializedName("url")
 	private String url;
 
-	protected SectionsItem(Parcel in) {
-		idStory = in.readInt();
-		updatedAt = in.readString();
-		name = in.readString();
-		description = in.readString();
-		createdAt = in.readString();
-		id = in.readInt();
-		url = in.readString();
-	}
 
 
 	public void setIdStory(int idStory){

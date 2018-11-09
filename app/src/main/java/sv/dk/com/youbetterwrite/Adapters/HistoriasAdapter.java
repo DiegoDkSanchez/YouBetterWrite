@@ -45,13 +45,13 @@ public class HistoriasAdapter extends RecyclerView.Adapter<HistoriasAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-       // holder.myTextView.setText(mData[position]);
+        // holder.myTextView.setText(mData[position]);
         holder.titulo.setText(listaHistorias.get(position).getName());
         holder.autor.setText("Papa jhons");
         holder.portada.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.categoria.setText(listaHistorias.get(position).getCategory().getName());
-        //Glide.with(holder.portada.getContext()).load(listaHistorias.get(position).getPortada()).into(holder.portada);
-        Glide.with(holder.portada.getContext()).load("https://www.guiainfantil.com/uploads/ocio/carrerazapatillas-p.jpg").into(holder.portada);
+        Glide.with(holder.portada.getContext()).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+listaHistorias.get(position).getUrl()).into(holder.portada);
+        //Glide.with(holder.portada.getContext()).load("https://www.guiainfantil.com/uploads/ocio/carrerazapatillas-p.jpg").into(holder.portada);
     }
 
     @Override

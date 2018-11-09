@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
@@ -35,20 +36,10 @@ public class Story implements Serializable{
 	private Object deletedAt;
 
 	@SerializedName("sections")
-	private List<SectionsItem> sections;
+	private ArrayList<SectionsItem> sections;
 
 	@SerializedName("url")
 	private String url;
-
-	protected Story(Parcel in) {
-		updatedAt = in.readString();
-		idCategory = in.readInt();
-		name = in.readString();
-		createdAt = in.readString();
-		id = in.readInt();
-		state = in.readInt();
-		url = in.readString();
-	}
 
 
 	public void setUpdatedAt(String updatedAt){
@@ -115,11 +106,11 @@ public class Story implements Serializable{
 		return deletedAt;
 	}
 
-	public void setSections(List<SectionsItem> sections){
+	public void setSections(ArrayList<SectionsItem> sections){
 		this.sections = sections;
 	}
 
-	public List<SectionsItem> getSections(){
+	public ArrayList<SectionsItem> getSections(){
 		return sections;
 	}
 
