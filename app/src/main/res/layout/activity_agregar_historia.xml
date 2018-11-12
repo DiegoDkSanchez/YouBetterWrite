@@ -42,9 +42,11 @@
                     android:id="@+id/uploadPortada"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="#a7a7a7"/>
+                    android:background="#a7a7a7"
+                    android:scaleType="centerCrop" />
 
                 <Button
+                    android:onClick="LoadImagePortada"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_marginTop="75dp"

@@ -70,13 +70,13 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         recyclerView.scheduleLayoutAnimation();
 
 
-        /*
+
         if(AccessToken.getCurrentAccessToken() == null){
             Intent intent = new Intent(MainActivity.this, LoginPage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
-        */
+
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
