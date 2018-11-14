@@ -20,8 +20,10 @@ public class Favoritos extends AppCompatActivity {
     }
 
     public void navegacionBuscar(View view) {
-        Intent intent = new Intent(Favoritos.this, Busqueda.class);
+        Intent intent = new Intent(Favoritos.this, Seach.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
         finish();
     }
 

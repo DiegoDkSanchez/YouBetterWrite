@@ -27,116 +27,134 @@
                     android:layout_height="18dp"
                     android:layout_centerHorizontal="true"
                     app:srcCompat="@drawable/youbetterwrite" />
+
+                <ImageView
+                    android:id="@+id/buttonLogOut"
+                    android:onClick="LogOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="#fff"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    app:srcCompat="@drawable/ic_exit_to_app_black_24dp" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_weight="1">
 
-        <RelativeLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/negroStandar">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/pp"
+                    app:civ_border_width="2dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    app:civ_border_color="#fff"/>
+
+                <TextView
+                    android:id="@+id/perfilNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del Usuario"
+                    android:layout_margin="5dp"
+                    android:textColor="#fff"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/profile_image"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/barraDatos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/perfilNombre"
+                    android:padding="10dp"
+                    android:layout_marginBottom="35dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Historias:"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16dp"/>
+                        <TextView
+                            android:id="@+id/perfilNumHistorias"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+
+                        android:background="@color/colorGris"></LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Puntuacion:"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16dp"/>
+                        <TextView
+                            android:id="@+id/perfilNumSeguidores"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:text="0"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:onClick="agregarhistoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/negroStandar">
+            android:layout_marginTop="210dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="35dp"
+            android:text="Escribe una historia"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:background="@drawable/buttoncolorborder"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@drawable/pp"
-                app:civ_border_width="2dp"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                app:civ_border_color="#fff"/>
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/perfilNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre del Usuario"
-                android:layout_margin="5dp"
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/profile_image"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:id="@+id/barraDatos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/perfilNombre"
-                android:padding="10dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Historias:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16dp"/>
-                    <TextView
-                        android:id="@+id/perfilNumHistorias"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:text="0"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorGris"></LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Puntuacion:"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="16dp"/>
-                    <TextView
-                        android:id="@+id/perfilNumSeguidores"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:text="0"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:onClick="agregarhistoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_below="@id/barraDatos"
-                android:text="Escribe una historia"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:background="@drawable/buttoncolorborder"/>
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

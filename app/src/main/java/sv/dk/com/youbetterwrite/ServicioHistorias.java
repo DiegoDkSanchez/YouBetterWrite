@@ -1,13 +1,18 @@
 package sv.dk.com.youbetterwrite;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import sv.dk.com.youbetterwrite.Modelos.Historia;
+import sv.dk.com.youbetterwrite.Modelos.ResponseCategory;
 import sv.dk.com.youbetterwrite.Modelos.ResponseData;
 
 /**
@@ -21,14 +26,23 @@ public interface ServicioHistorias {
     @GET("stories")
     Call<ResponseData> getHistorias();
 
-    @GET("autores/{id}")
-    Call<Historia> getAutor(@Path("id") String id);
+    @GET("categories")
+    Call<ResponseCategory> getCategories();
 
     @FormUrlEncoded
-    @POST("conceptos")
-    Call<ResponseData> addConcepto(
+    @POST("stories")
+    Call<ResponseBody> addHistoria(
             @Field("name") String name,
-            @Field("value") double value,
-            @Field("category_id") int category_id);
+            @Field("state") int value,
+            @Field("id_category") int category_id);
+
+    @Multipart
+    @POST("stories")
+    Call<ResponseBody> addStory (
+            @Part("file\"; filename=\"pp.png\" ") RequestBody file ,
+            @Part("name") RequestBody name,
+            @Part("state") RequestBody state,
+            @Part("id_category") RequestBody category_id);
+
 
 }

@@ -9,9 +9,6 @@ public class ResponseData {
 	@SerializedName("data")
 	private List<Story> data;
 
-	//@SerializedName("data")
-	private List<Category> dataCategory;
-
 	@SerializedName("success")
 	private boolean success;
 
@@ -24,14 +21,6 @@ public class ResponseData {
 
 	public List<Story> getData(){
 		return data;
-	}
-
-	public List<Category> getDataCategory() {
-		return dataCategory;
-	}
-
-	public void setDataCategory(List<Category> dataCategory) {
-		this.dataCategory = dataCategory;
 	}
 
 	public void setSuccess(boolean success){

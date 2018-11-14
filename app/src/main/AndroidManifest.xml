@@ -3,10 +3,17 @@
     package="sv.dk.com.youbetterwrite">
 
     <meta-data
-    android:name="com.google.firebase.messaging.default_notification_icon"
-    android:resource="@drawable/ic_launcher_background" />
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@drawable/ic_launcher_background" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -39,7 +46,7 @@
         <activity
             android:name=".Perfil"
             android:screenOrientation="portrait" />
-        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".LoginPage" />
 
         <!-- FaceBook -->
         <meta-data
@@ -63,18 +70,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".AgregarHistoria" />
-        <activity android:name=".AgregarSeccion"></activity>
+        <activity android:name=".AgregarSeccion" />
 
-    <service android:name=".FirebaseIDService">
-        <intent-filter>
-            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-        </intent-filter>
-    </service>
-        <service android:name=".FirebaseMesaginService">
+        <service android:name=".FirebaseIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".FirebaseMesaginService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".Seach"
+            android:label="@string/title_activity_seach"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

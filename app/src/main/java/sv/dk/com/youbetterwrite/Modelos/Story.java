@@ -1,5 +1,7 @@
 package sv.dk.com.youbetterwrite.Modelos;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -41,6 +43,14 @@ public class Story implements Serializable{
 	@SerializedName("url")
 	private String url;
 
+	@SerializedName("urlBitmap")
+	private String urlBitmap;
+
+	@SerializedName("autor")
+	private Autor autor;
+
+	@SerializedName("id_usuario")
+	private int id_usuario;
 
 	public void setUpdatedAt(String updatedAt){
 		this.updatedAt = updatedAt;
@@ -122,14 +132,41 @@ public class Story implements Serializable{
 		this.url = url;
 	}
 
+	public String getUrlBitmap() {
+		return urlBitmap;
+	}
+
+	public void setUrlBitmap(String urlBitmap) {
+		this.urlBitmap = urlBitmap;
+	}
+
+	public int getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	public Autor getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
+
 	@Override
  	public String toString(){
 		return 
 			"Story{" +
 			"updated_at = '" + updatedAt + '\'' + 
-			",id_category = '" + idCategory + '\'' + 
+			",id_category = '" + idCategory + '\'' +
+			",id_usuario = '" + id_usuario + '\'' +
 			",name = '" + name + '\'' +
+			",autor = '" + autor + '\'' +
 			",url = '" + url + '\'' +
+			",url_bitmap = '" + urlBitmap + '\'' +
 			",created_at = '" + createdAt + '\'' +
 			",id = '" + id + '\'' + 
 			",state = '" + state + '\'' + 

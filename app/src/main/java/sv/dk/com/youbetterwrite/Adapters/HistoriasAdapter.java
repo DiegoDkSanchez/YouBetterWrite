@@ -47,7 +47,8 @@ public class HistoriasAdapter extends RecyclerView.Adapter<HistoriasAdapter.View
 
         // holder.myTextView.setText(mData[position]);
         holder.titulo.setText(listaHistorias.get(position).getName());
-        holder.autor.setText("Papa jhons");
+        holder.autor.setText(listaHistorias.get(position).getAutor().getFirst_name() +" "+
+                listaHistorias.get(position).getAutor().getLast_name());
         holder.portada.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.categoria.setText(listaHistorias.get(position).getCategory().getName());
         Glide.with(holder.portada.getContext()).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+listaHistorias.get(position).getUrl()).into(holder.portada);

@@ -3,6 +3,7 @@ package sv.dk.com.youbetterwrite;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,11 +25,13 @@ public class SeccionView extends AppCompatActivity {
     ImageView imagen;
     TextView contenido, titulo, subtitulo, numPaginas;
     Button atras, adelante;
+    CardView cardView;
 
     private int pagina;
     private SpeakRequest speakRequest;
     private Story historia;
     private SectionsItem seccion;
+    private boolean NotIsFinalPage = true;
     private List<SectionsItem> secciones = new ArrayList<>();
 
     @Override
@@ -44,6 +47,7 @@ public class SeccionView extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.txtTituloSeccion);
         subtitulo = (TextView) findViewById(R.id.txtSubtituloSeccion);
         numPaginas = (TextView) findViewById(R.id.txtNumPagina);
+        cardView = findViewById(R.id.seccionCardView);
 
         pagina = (int) getIntent().getSerializableExtra("pagina");
         historia = (Story) getIntent().getSerializableExtra("historia");
@@ -62,11 +66,7 @@ public class SeccionView extends AppCompatActivity {
 
         if(pagina==historia.getSections().size()-1){
             adelante.setVisibility(View.INVISIBLE);
-        }
-        if(seccion.getUrl() != null){
-            Glide.with(this).load(seccion.getUrl()).into(imagen);
-        }else {
-            Glide.with(this).load(historia.getUrl()).into(imagen);
+            NotIsFinalPage = false;
         }
 
         titulo.setText(historia.getName());
@@ -114,6 +114,52 @@ public class SeccionView extends AppCompatActivity {
             }
         });
 
+        cardView.setOnTouchListener(new OnSwipeTouchListener(SeccionView.this) {
+            public void onSwipeTop() {
+                //  Toast.makeText(SeccionView.this, "top", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeRight() {
+                if(pagina != 0) {
+                    Intent intent = new Intent(SeccionView.this, SeccionView.class);
+                    intent.putExtra("historia", historia);
+                    pagina -= 1;
+                    intent.putExtra("pagina", pagina);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+                    if(speakRequest.isSpeaking()){
+                        speakRequest.stopSpeak();
+                    }
+                    finish();
+                }else {
+                    Intent intent = new Intent(SeccionView.this, HistoriaDetalle.class);
+                    intent.putExtra("historia", historia);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+            public void onSwipeLeft() {
+                if(NotIsFinalPage){
+                    Intent intent = new Intent(SeccionView.this, SeccionView.class);
+                    intent.putExtra("historia", historia);
+                    pagina += 1;
+                    intent.putExtra("pagina", pagina);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+                    speakRequest.stopSpeak();
+                    startActivity(intent);
+                    finish();
+                    if(speakRequest.isSpeaking()){
+                        speakRequest.stopSpeak();
+                    }
+                }
+            }
+            public void onSwipeBottom() {
+                // Toast.makeText(SeccionView.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+
     }
 
     public void escucharSeccion(View view) {
@@ -123,4 +169,7 @@ public class SeccionView extends AppCompatActivity {
         String texto = seccion.getName()+". \n"+seccion.getDescription();
         speakRequest.speak(texto);
     }
+
+
+
 }

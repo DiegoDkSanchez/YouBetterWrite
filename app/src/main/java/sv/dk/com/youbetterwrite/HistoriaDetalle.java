@@ -38,7 +38,7 @@ public class HistoriaDetalle extends AppCompatActivity {
         Glide.with(this).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+historia.getUrl()).into(portada);
         titulo.setText(historia.getName());
         categoria.setText(historia.getCategory().getName());
-        //autor.setText(historia.get());
+        autor.setText(historia.getAutor().getFirst_name() + " " + historia.getAutor().getLast_name());
 
     }
 

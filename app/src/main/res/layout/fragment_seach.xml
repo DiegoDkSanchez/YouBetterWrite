@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="sv.dk.com.youbetterwrite.Seach$PlaceholderFragment">
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:focusedByDefault="true"
+        style="@style/MaterialSearchBarLight"
+        app:mt_speechMode="true"
+        app:mt_hint="Buscar"
+        app:mt_maxSuggestionsCount="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchBar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reciclerViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutAnimation="@anim/layout_animation_fall_down"/>
+
+</LinearLayout>

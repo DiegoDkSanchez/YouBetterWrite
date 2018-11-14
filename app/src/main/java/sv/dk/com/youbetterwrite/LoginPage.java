@@ -11,6 +11,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -36,6 +37,11 @@ public class LoginPage extends AppCompatActivity {
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Profile profile = Profile.getCurrentProfile();
+                String id = profile.getId();
+                String name = profile.getFirstName();
+                String apellido = profile.getLastName();
+                String url = profile.getProfilePictureUri(200,200).toString();
                 Intent intent = new Intent(LoginPage.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
