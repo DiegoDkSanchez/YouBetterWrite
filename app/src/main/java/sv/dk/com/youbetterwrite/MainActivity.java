@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -70,12 +71,12 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
         recyclerView.setLayoutAnimation(controller);
         recyclerView.scheduleLayoutAnimation();
 
-/*
+
         if(AccessToken.getCurrentAccessToken() == null){
             Intent intent = new Intent(MainActivity.this, LoginPage.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }*/
+        }
 
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements HistoriasAdapter.
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 if(response.body() != null){
                     listaHistorias = response.body().getData();
+                    Collections.reverse(listaHistorias);
                 }
                 recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
                 adaptador = new HistoriasAdapter(MainActivity.this, listaHistorias);

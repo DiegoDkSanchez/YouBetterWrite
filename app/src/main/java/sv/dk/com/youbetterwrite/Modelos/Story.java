@@ -52,6 +52,9 @@ public class Story implements Serializable{
 	@SerializedName("id_usuario")
 	private int id_usuario;
 
+	@SerializedName("likes")
+	private int likes;
+
 	public void setUpdatedAt(String updatedAt){
 		this.updatedAt = updatedAt;
 	}
@@ -156,6 +159,14 @@ public class Story implements Serializable{
 		this.autor = autor;
 	}
 
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -163,6 +174,7 @@ public class Story implements Serializable{
 			"updated_at = '" + updatedAt + '\'' + 
 			",id_category = '" + idCategory + '\'' +
 			",id_usuario = '" + id_usuario + '\'' +
+			",likes = '" + likes + '\'' +
 			",name = '" + name + '\'' +
 			",autor = '" + autor + '\'' +
 			",url = '" + url + '\'' +

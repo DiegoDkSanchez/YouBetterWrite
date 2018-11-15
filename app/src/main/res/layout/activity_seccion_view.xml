@@ -105,7 +105,7 @@
             <Button
                 android:id="@+id/bottomAtras"
                 android:text="Anterior"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/negroStandar"
@@ -113,17 +113,34 @@
                 android:paddingLeft="15dp"
                 android:textColor="#fff"
                 />
-
-            <Button
-                android:id="@+id/bottomAdelante"
-                android:text="Siguiente"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/negroStandar"
-                android:drawableRight="@drawable/derecha"
-                android:paddingRight="15dp"
-                android:textColor="#fff" />
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/bottomAdelante"
+                    android:text="Siguiente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/negroStandar"
+                    android:drawableRight="@drawable/derecha"
+                    android:paddingRight="15dp"
+                    android:textColor="#fff" />
+
+                <Button
+                    android:id="@+id/bottomPuntuar"
+                    android:text="Puntuar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/negroStandar"
+                    android:paddingRight="15dp"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+
+
+
 
         </LinearLayout>
 

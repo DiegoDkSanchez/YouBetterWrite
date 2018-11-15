@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/negroStandar"
+    android:orientation="vertical"
+    tools:context="sv.dk.com.youbetterwrite.AddClaps"
+    android:padding="50dp">
+
+    <TextView
+        android:id="@+id/tituloClaps"
+        android:textColor="#fff"
+        android:text="Titulo"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_marginTop="30dp"
+        android:text="Aplausos"
+        android:textAlignment="center"/>
+
+    <ImageButton
+        android:onClick="addClap"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_favorite_black_24dp"
+        android:tint="#fff"
+        android:background="@drawable/buttoncolorborder"/>
+
+    <TextView
+        android:id="@+id/contador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="50dp"/>
+
+    <Button
+        android:onClick="terminar"
+        android:layout_marginTop="40dp"
+        android:text="Enviar"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttoncolorborder"/>
+
+
+</LinearLayout>

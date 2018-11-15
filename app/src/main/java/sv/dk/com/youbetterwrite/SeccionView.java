@@ -24,7 +24,7 @@ public class SeccionView extends AppCompatActivity {
 
     ImageView imagen;
     TextView contenido, titulo, subtitulo, numPaginas;
-    Button atras, adelante;
+    Button atras, adelante, puntuar;
     CardView cardView;
 
     private int pagina;
@@ -43,6 +43,7 @@ public class SeccionView extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagenHistoria);
         contenido = (TextView) findViewById(R.id.txtContenidoHistoria);
         atras = (Button) findViewById(R.id.bottomAtras);
+        puntuar = findViewById(R.id.bottomPuntuar);
         adelante = (Button) findViewById(R.id.bottomAdelante);
         titulo = (TextView) findViewById(R.id.txtTituloSeccion);
         subtitulo = (TextView) findViewById(R.id.txtSubtituloSeccion);
@@ -53,6 +54,8 @@ public class SeccionView extends AppCompatActivity {
         historia = (Story) getIntent().getSerializableExtra("historia");
         secciones = historia.getSections();
         seccion = secciones.get(pagina);
+
+        puntuar.setVisibility(View.INVISIBLE);
 
         if(seccion.getUrl() != null){
             Glide.with(this).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+seccion.getUrl()).into(imagen);
@@ -66,6 +69,7 @@ public class SeccionView extends AppCompatActivity {
 
         if(pagina==historia.getSections().size()-1){
             adelante.setVisibility(View.INVISIBLE);
+            puntuar.setVisibility(View.VISIBLE);
             NotIsFinalPage = false;
         }
 
@@ -107,6 +111,18 @@ public class SeccionView extends AppCompatActivity {
                 intent.putExtra("historia", historia);
                 pagina += 1;
                 intent.putExtra("pagina", pagina);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+                speakRequest.stopSpeak();
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        puntuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SeccionView.this, AddClaps.class);
+                intent.putExtra("historia", historia);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
                 speakRequest.stopSpeak();
                 startActivity(intent);

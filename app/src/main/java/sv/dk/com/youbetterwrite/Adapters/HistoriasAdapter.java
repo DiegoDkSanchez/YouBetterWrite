@@ -49,6 +49,7 @@ public class HistoriasAdapter extends RecyclerView.Adapter<HistoriasAdapter.View
         holder.titulo.setText(listaHistorias.get(position).getName());
         holder.autor.setText(listaHistorias.get(position).getAutor().getFirst_name() +" "+
                 listaHistorias.get(position).getAutor().getLast_name());
+        holder.claps.setText(listaHistorias.get(position).getLikes()+"");
         holder.portada.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.categoria.setText(listaHistorias.get(position).getCategory().getName());
         Glide.with(holder.portada.getContext()).load("http://ec2-54-244-63-119.us-west-2.compute.amazonaws.com/betterwrite/public/images/"+listaHistorias.get(position).getUrl()).into(holder.portada);
@@ -63,7 +64,7 @@ public class HistoriasAdapter extends RecyclerView.Adapter<HistoriasAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView portada;
-        TextView titulo, autor;
+        TextView titulo, autor, claps;
         Button categoria;
 
         public ViewHolder(View itemView) {
@@ -72,6 +73,7 @@ public class HistoriasAdapter extends RecyclerView.Adapter<HistoriasAdapter.View
             portada = (ImageView) itemView.findViewById(R.id.txthistoriaportada);
             autor = (TextView) itemView.findViewById(R.id.txthistoriaautor);
             categoria = (Button) itemView.findViewById(R.id.txthistoriacategoria);
+            claps = (TextView) itemView.findViewById(R.id.claps);
             itemView.setOnClickListener(this);
         }
 

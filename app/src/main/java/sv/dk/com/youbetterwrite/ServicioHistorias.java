@@ -14,6 +14,7 @@ import retrofit2.http.Path;
 import sv.dk.com.youbetterwrite.Modelos.Historia;
 import sv.dk.com.youbetterwrite.Modelos.ResponseCategory;
 import sv.dk.com.youbetterwrite.Modelos.ResponseData;
+import sv.dk.com.youbetterwrite.Modelos.ResponseDataSingleStory;
 
 /**
  * Created by DK-Ragnar on 8/9/2018.
@@ -26,15 +27,34 @@ public interface ServicioHistorias {
     @GET("stories")
     Call<ResponseData> getHistorias();
 
+    @GET("stories/1")
+    Call<ResponseData> getBetter();
+
     @GET("categories")
     Call<ResponseCategory> getCategories();
 
     @FormUrlEncoded
     @POST("stories")
-    Call<ResponseBody> addHistoria(
+    Call<ResponseDataSingleStory> addHistoria(
             @Field("name") String name,
             @Field("state") int value,
             @Field("id_category") int category_id);
+
+
+    @FormUrlEncoded
+    @POST("sections")
+    Call<ResponseBody> addSection(
+            @Field("name") String name,
+            @Field("description") String description,
+            @Field("id_story") int id_story);
+
+    @FormUrlEncoded
+    @POST("usuario_stories")
+    Call<ResponseBody> addClaps(
+            @Field("id_usuaio") int id_usuario,
+            @Field("id_story") int id_story,
+            @Field("comentario") String comentario,
+            @Field("state") int state);
 
     @Multipart
     @POST("stories")

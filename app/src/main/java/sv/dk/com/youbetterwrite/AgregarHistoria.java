@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -52,12 +54,15 @@ import sv.dk.com.youbetterwrite.Adapters.HistoriasAdapter;
 import sv.dk.com.youbetterwrite.Modelos.Category;
 import sv.dk.com.youbetterwrite.Modelos.ResponseCategory;
 import sv.dk.com.youbetterwrite.Modelos.ResponseData;
+import sv.dk.com.youbetterwrite.Modelos.ResponseDataSingleStory;
 import sv.dk.com.youbetterwrite.Modelos.SectionsItem;
 import sv.dk.com.youbetterwrite.Modelos.Story;
 
 import static java.security.AccessController.getContext;
 
 public class AgregarHistoria extends AppCompatActivity {
+
+    private InterstitialAd mInterstial;
 
     private static int RESULT_LOAD_IMAGE;
     MaterialSpinner spinner;
@@ -94,6 +99,12 @@ public class AgregarHistoria extends AppCompatActivity {
         listView = findViewById(R.id.listSeccions);
         title = findViewById(R.id.txtTitle);
         uploadPortada = findViewById(R.id.uploadPortada);
+
+        mInterstial = new InterstitialAd(this);
+        mInterstial.setAdUnitId("ca-app-pub-6655254888722539~5586324901");
+
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        mInterstial.loadAd(adRequest);
 
         CallBackAll();
 
@@ -167,11 +178,16 @@ public class AgregarHistoria extends AppCompatActivity {
 
     public void subirHistoria(View view) {
 
+            mInterstial.show();
+/*
             File file = new File(getPath(Uri.parse(historia.getUrlBitmap())));
             RequestBody fbody = RequestBody.create(MediaType.parse("image/*"), file);
             RequestBody name = RequestBody.create(MediaType.parse("text/plain"), title.getText().toString());
             RequestBody state = RequestBody.create(MediaType.parse("text/plain"), 3+"");
-            RequestBody id_category = RequestBody.create(MediaType.parse("text/plain"), selectCategory.getId()+"");
+        RequestBody id_category = RequestBody.create(MediaType.parse("text/plain"), "11");
+            if(selectCategory != null){
+                id_category = RequestBody.create(MediaType.parse("text/plain"), selectCategory.getId()+"");
+            }
 
             Call<ResponseBody> call = apiService.addStory(fbody,name,state,id_category);
             call.enqueue(new Callback<ResponseBody>() {
@@ -184,22 +200,43 @@ public class AgregarHistoria extends AppCompatActivity {
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                 }
-            });
+            });*/
 
-
-        /*
-        Call<ResponseBody> call = apiService.addHistoria(title.getText().toString(),3,selectCategory.getId());
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<ResponseDataSingleStory> call = apiService.addHistoria(title.getText().toString(),3,selectCategory.getId());
+        call.enqueue(new Callback<ResponseDataSingleStory>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<ResponseDataSingleStory> call, Response<ResponseDataSingleStory> response) {
                 Toast.makeText(getApplicationContext(),"Se guardo tu historia", Toast.LENGTH_SHORT).show();
+                historia.setId(response.body().getData().getId());
+
+                if(historia.getSections().size() != 0){
+                    for(SectionsItem section : historia.getSections()){
+                        Call<ResponseBody> callSection = apiService.addSection(section.getName(),section.getDescription(),historia.getId());
+                        callSection.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<ResponseDataSingleStory> call, Throwable t) {
 
             }
-        });*/
+        });
+
+
+        Intent intent = new Intent(AgregarHistoria.this, AdsPage.class);
+        startActivity(intent);
+        finish();
 
     }
 
